@@ -8,8 +8,9 @@ html {
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none;
+  user-select: none; 
   
+  background-color: rgb(245 245 245);
 }
 
 * {
@@ -37,6 +38,29 @@ p {
 
 section {
     background-color: rgb(245 245 245);
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.container {
+    padding: 50px 0;
+}
+
+.row {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.section__title {
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .click {
@@ -186,4 +210,95 @@ nav {
 
 .fa-adjust {
     font-size: 20px;
+}
+
+
+/* PROJECTS */
+
+.project {
+    margin-bottom: 125px;
+}
+
+.project:last-child {
+    margin-bottom: 40px;
+}
+
+.project__img {
+    width: 100%;
+    transition: all 0.55s ease;
+}
+
+.project__wrapper {
+    display: flex;
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.project__wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #1c1d25;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    z-index: 2;
+}
+
+.project:hover .project__wrapper:before {
+    opacity: 0.6;
+}
+
+.project:hover .project__img {
+    transform: scale(1.1);
+    filter: blur(7px);
+}
+
+.project:hover .project__description {
+    opacity: 1;
+    transform: translateY(-50%);
+}
+
+.project__list {
+    padding-top: 40px;
+}
+
+.project__description {
+    position: absolute;
+    transform: translateY(100%);
+    left: 90px;
+    max-width: 550px;
+    z-index: 3;
+    top: 50%;
+    opacity: 0;
+    transition: all 0.19s ease-out;
+}
+
+.project__description--title {
+    font-size: 30px;
+}
+
+.project__description--sub-title {
+    font-size: 18px;
+}
+
+.project__description--paragraph {
+    margin: 20px 0;
+}
+
+.project__description--link {
+    margin-right: 8px;
+    font-size: 22px;
+}
+
+.project__description--title,
+.project__description--sub-title,
+.project__description--paragraph,
+.project__description--link {
+    text-align: left;
+    color: white;
 }
