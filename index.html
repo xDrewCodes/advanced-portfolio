@@ -8,6 +8,16 @@
     <script src="/app.js" defer></script>
     <link rel="stylesheet" href="./style.css">
     <script src="https://kit.fontawesome.com/8a3e67506d.js" crossorigin="anonymous"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "GOQAiygteJjl0SVwW",
+      });
+   })();
+</script>
 </head>
 
 <body>
@@ -17,11 +27,11 @@
                 <img src="./assets/logo.png" alt="" class="personal-logo">
             </figure>
             <ul class="nav__link--list">
-                <li class="nav__link"><a href="#"
+                <li class="nav__link"><a href="#" onclick="toggleModal()"
                         class="nav__link--anchor link__hover-effect link__hover-effect--black">About</a></li>
                 <li class="nav__link"><a href="#"
                         class="nav__link--anchor link__hover-effect link__hover-effect--black">Projects</a></li>
-                <li class="nav__link"><a href="#"
+                <li class="nav__link"><a href="#" onclick="toggleModal()"
                         class="nav__link--anchor link__hover-effect link__hover-effect--black">Contact</a></li>
                 <li class="nav__link"><i
                         class="fas fa-adjust nav__link--anchor link__hover-effect link__hover-effect--black"></i></li>
@@ -29,12 +39,12 @@
         </nav>
         <header class="header">
             <div class="header__content">
-                <h1 class="title">Hey</h1>
+                <h1 class="title">Hey,</h1>
                 <h1 class="title green">I'm Drew</h1>
                 <p class="header__paragraph">I'm a <span class="green">Frontend Software Developer</span> with a strong
                     passion for building web apps with great user experiences
                     <br>
-                    Here's a bit <span class="green"><a href="#" class="header__link">about me.</a></span>
+                    Here's a bit <span class="green"><a href="#" onclick='toggleModal()' class="header__link">about me.</a></span>
                 </p>
                 <div class="social__list">
                     <a href="#" class="social__link click">
@@ -49,7 +59,7 @@
                 </div>
             </div>
         </header>
-        <button class="mail__button click">
+        <button class="mail__button click" onclick="toggleModal()">
             <i class="fas fa-envelope"></i>
         </button>
         <a href="#projects" class="scroll">
@@ -101,18 +111,18 @@
             <div class="modal__half modal__contact">
                 <h2 class="modal__title">Let's have a chat.</h2>
                 <h4 class="modal__sub-title">I'd love to hear from you.</h4>
-                <form action="" id="contact__form">
+                <form onsubmit="contact(event)" id="contact__form">
                     <div class="form__item">
                         <label class="form__item--label">Name</label>
-                        <input type="text" class="input" name="user_name" required />
+                        <input type="text" class="input modal__form--name" name="user_name" required />
                     </div>
                     <div class="form__item">
                         <label class="form__item--label">Email</label>
-                        <input type="email" class="input" name="user_email" required />
+                        <input type="email" class="input modal__form--email" name="user_email" required />
                     </div>
                     <div class="form__item">
                         <label class="form__item--label">Message</label>
-                        <textarea type="text" class="input" name="message" required></textarea>
+                        <textarea type="text" class="input modal__form--message" name="message" required></textarea>
                     </div>
                     <button class="form__submit" id="contact_submit">Send it my way</button>
                 </form>
@@ -122,8 +132,11 @@
                 <div class="modal__overlay modal__overlay--sent">
                     Your message is on it's way!
                 </div>
+                <div class="modal__overlay modal__overlay--error">
+                    Something went wrong :/
+                </div>
             </div>
-            <i class="fas fa-times modal__close click"></i>
+            <i class="fas fa-times modal__close click" onclick="toggleModal()"></i>
         </div>
     </section>
     <section id="projects">

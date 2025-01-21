@@ -293,6 +293,7 @@ nav {
     border-radius: 10px;
     overflow: hidden;
     display: flex;
+    z-index: -1;
 }
 
 .modal__half {
@@ -407,6 +408,12 @@ nav {
     z-index: -1;
 }
 
+.modal__overlay--error {
+    font-size: 28px;
+    background-color: #c94e4e;
+    z-index: -1;
+}
+
 .fa-spinner {
     animation: loading 0.9s infinite linear;
 }
@@ -427,6 +434,10 @@ nav {
     right: 40px;
     color: white;
     font-size: 24px;
+    z-index: 2;
+}
+
+.modal--open .modal {
     z-index: 2;
 }
 

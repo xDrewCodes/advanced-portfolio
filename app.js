@@ -25,5 +25,55 @@ function setAge() {
 setAge()
 
 
-// JAVASCRIPT
+// EMAIL FUNCTIONALITY FOR MODAL
+
+function contact(event) {
+
+    let loading = document.getElementsByClassName('modal__overlay--loading')[0]
+    let sent = document.getElementsByClassName('modal__overlay--sent')[0]
+    let error = document.getElementsByClassName('modal__overlay--error')[0]
+
+    loading.style.zIndex = 1
+
+    let templateParams = {
+        user_name: document.getElementsByClassName('modal__form--name')[0].value,
+        user_email: document.getElementsByClassName('modal__form--email')[0].value,
+        message: document.getElementsByClassName('modal__form--message')[0].value
+    }
+
+    event.preventDefault()
+    emailjs.send(
+        'service_zld5ibs',
+        'template_k56ugjk',
+        templateParams
+    ).then(
+        () => {
+            loading.style.zIndex = -1
+            sent.style.zIndex = 1
+        }
+    ).catch(
+        () => {
+            loading.style.zIndex = -1
+            error.style.zIndex = 1
+        }
+    )
+    
+}
+
+
+// SHOW FUNCTIONALITY FOR MODAL
+
+let modalOpen = false
+
+function toggleModal() {
+    
+    if ( !modalOpen ) {
+        document.getElementsByTagName('body')[0].classList += ' modal--open'
+    } else {
+        document.getElementsByTagName('body')[0].classList -= ' modal--open'
+    }
+
+    modalOpen = !modalOpen
+
+}
 
