@@ -33,7 +33,7 @@ function contact(event) {
     let sent = document.getElementsByClassName('modal__overlay--sent')[0]
     let error = document.getElementsByClassName('modal__overlay--error')[0]
 
-    loading.style.zIndex = 1
+    loading.style.display = 'flex'
 
     let templateParams = {
         user_name: document.getElementsByClassName('modal__form--name')[0].value,
@@ -48,13 +48,13 @@ function contact(event) {
         templateParams
     ).then(
         () => {
-            loading.style.zIndex = -1
-            sent.style.zIndex = 1
+            loading.style.display = 'none'
+            sent.style.display = 'flex'
         }
     ).catch(
         () => {
-            loading.style.zIndex = -1
-            error.style.zIndex = 1
+            loading.style.display = 'none'
+            error.style.display = 'flex'
         }
     )
     
@@ -69,8 +69,14 @@ function toggleModal() {
     
     if ( !modalOpen ) {
         document.getElementsByTagName('body')[0].classList += ' modal--open'
+        document.getElementsByClassName('modal')[0].style.zIndex = 3
     } else {
         document.getElementsByTagName('body')[0].classList -= ' modal--open'
+        setTimeout(
+            () => {
+                document.getElementsByClassName('modal')[0].style.zIndex = -1
+            }, 300
+        )
     }
 
     modalOpen = !modalOpen
