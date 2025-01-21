@@ -11,6 +11,8 @@ html {
     user-select: none;
 
     background-color: rgb(245 245 245);
+
+    scroll-behavior: smooth;
 }
 
 * {
@@ -146,6 +148,25 @@ textarea:focus {
 
 label {
     font-size: 14px;
+}
+
+nav,
+.scroll,
+.header,
+#projects,
+footer {
+    opacity: 1;
+    visibility: shown;
+    transition: all 0.4s ease;
+}
+
+.modal--open nav,
+.modal--open .scroll,
+.modal--open .header,
+.modal--open #projects,
+.modal--open footer {
+    opacity: 0;
+    visibility: hidden;
 }
 
 

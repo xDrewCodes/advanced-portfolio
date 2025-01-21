@@ -8,13 +8,13 @@ const ageReference = document.getElementsByClassName('age')[0]
 function setAge() {
 
     let today = new Date()
-    let dob = new Date( birthday )
+    let dob = new Date(birthday)
 
     let age = today.getFullYear() - dob.getFullYear()
     let m = today.getMonth() - dob.getMonth()
     let d = today.getDate() - dob.getDate()
 
-    if ( m < 0 || ( m == 0 && d <= 0 ) ) {
+    if (m < 0 || (m == 0 && d <= 0)) {
         age--
     }
 
@@ -57,7 +57,7 @@ function contact(event) {
             error.style.display = 'flex'
         }
     )
-    
+
 }
 
 
@@ -66,8 +66,8 @@ function contact(event) {
 let modalOpen = false
 
 function toggleModal() {
-    
-    if ( !modalOpen ) {
+
+    if (!modalOpen) {
         document.getElementsByTagName('body')[0].classList += ' modal--open'
         document.getElementsByClassName('modal')[0].style.zIndex = 3
     } else {
@@ -75,7 +75,7 @@ function toggleModal() {
         setTimeout(
             () => {
                 document.getElementsByClassName('modal')[0].style.zIndex = -1
-            }, 300
+            }, 100
         )
     }
 
