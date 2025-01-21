@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Drew Allred's Portfolio</title>
     <script src="/app.js" defer></script>
     <link rel="stylesheet" href="./style.css">
     <script src="https://kit.fontawesome.com/8a3e67506d.js" crossorigin="anonymous"></script>
@@ -34,7 +34,7 @@
                 <p class="header__paragraph">I'm a <span class="green">Frontend Software Developer</span> with a strong
                     passion for building web apps with great user experiences
                     <br>
-                    Here's a bit <span class="green">about me.</span>
+                    Here's a bit <span class="green"><a href="#" class="header__link">about me.</a></span>
                 </p>
                 <div class="social__list">
                     <a href="#" class="social__link click">
@@ -57,16 +57,16 @@
         </a>
         <div class="modal">
             <div class="modal__half modal__about">
-                <h3 class="modal--title modal__about--title">Here's a bit about me.</h3>
-                <h4 class="modal--sub-title modal__about--sub-title">Frontend Software Dev</h4>
-                <p class="modal--paragraph modal__about--paragraph">Im a 19 year old <span class="green">frontend
+                <h3 class="modal__title">Here's a bit about me.</h3>
+                <h4 class="modal__sub-title">Frontend Software Dev.</h4>
+                <p class="modal__paragraph">Im a <span class="age"></span> year old <span class="green">frontend
                         engineer</span>
                     with a love for regimented
                     systems and elegant designs. I strive to make <span class="green">perfect pairings</span> of the
                     two in whatever I build.
                 </p>
                 <br>
-                <p class="modal--paragraph modal__about--paragraph">
+                <p class="modal__paragraph">
                     I'm always working on furthering my coding skills and learning from those far better than me. My
                     goal is to surround myself with <span class="green">hard working developers</span> like myself.
                 </p>
@@ -74,33 +74,56 @@
                     <figure class="modal__language">
                         <img src="https://www.w3.org/html/logo/downloads/HTML5_Badge.svg" alt=""
                             class="modal__language--img">
-                            <span class="modal__language--label">HTML</span>
-                        </figure>
+                        <span class="modal__language--label">HTML</span>
+                    </figure>
                     <figure class="modal__language">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg" alt="" class="
                             modal__language--img">
-                            <span class="modal__language--label">CSS</span>
-                        </figure>
+                        <span class="modal__language--label">CSS</span>
+                    </figure>
                     <figure class="modal__language">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="" class="
                             modal__language--img">
-                            <span class="modal__language--label">JavaScript</span>
-                        </figure>
+                        <span class="modal__language--label">JavaScript</span>
+                    </figure>
                     <figure class="modal__language">
                         <img src="https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/community/logos/python-logo-only.png"
                             alt="" class="modal__language--img">
-                            <span class="modal__language--label">Python</span>
-                        </figure>
+                        <span class="modal__language--label">Python</span>
+                    </figure>
                     <figure class="modal__language">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Logo_C_sharp.svg" alt="" class="
                             modal__language--img">
-                            <span class="modal__language--label">C#</span>
-                        </figure>
+                        <span class="modal__language--label">C#</span>
+                    </figure>
                 </div>
             </div>
             <div class="modal__half modal__contact">
-                Lets have a chat
+                <h2 class="modal__title">Let's have a chat.</h2>
+                <h4 class="modal__sub-title">I'd love to hear from you.</h4>
+                <form action="" id="contact__form">
+                    <div class="form__item">
+                        <label class="form__item--label">Name</label>
+                        <input type="text" class="input" name="user_name" required />
+                    </div>
+                    <div class="form__item">
+                        <label class="form__item--label">Email</label>
+                        <input type="email" class="input" name="user_email" required />
+                    </div>
+                    <div class="form__item">
+                        <label class="form__item--label">Message</label>
+                        <textarea type="text" class="input" name="message" required></textarea>
+                    </div>
+                    <button class="form__submit" id="contact_submit">Send it my way</button>
+                </form>
+                <div class="modal__overlay modal__overlay--loading">
+                    <i class="fas fa-spinner"></i>
+                </div>
+                <div class="modal__overlay modal__overlay--sent">
+                    Your message is on it's way!
+                </div>
             </div>
+            <i class="fas fa-times modal__close click"></i>
         </div>
     </section>
     <section id="projects">
