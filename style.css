@@ -40,6 +40,33 @@ section {
     background-color: rgb(245 245 245);
 }
 
+.link__hover-effect {
+    position: relative;
+}
+
+.link__hover-effect--black:after {
+    background-color: #242424;
+}
+
+.link__hover-effect--white:after {
+    background-color: white;
+}
+
+.link__hover-effect:after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    right: 0;
+    height: 3px;
+    width: 0;
+    transition: all 0.2s ease;
+}
+
+.link__hover-effect:hover:after {
+    left: 0;
+    width: 100%;
+}
+
 .flex {
     display: flex;
 }
@@ -50,6 +77,7 @@ section {
 
 .container {
     padding: 50px 0;
+    width: 100%;
 }
 
 .row {
@@ -301,4 +329,44 @@ nav {
 .project__description--link {
     text-align: left;
     color: white;
+}
+
+
+
+footer {
+    background-color: #242424;
+    display: flex;
+    padding: 4% 0;
+}
+
+.footer__row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer__logo--img {
+    width: 90px;
+}
+
+.footer__social--link, .footer__copyright {
+    color: white;
+}
+
+.footer__social--list {
+    width: 100%;
+    max-width: 450px;
+    margin: 24px 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer__social--link {
+    font-size: 18px;
+}
+
+.footer__copyright {
+    letter-spacing: 1px;
+    font-weight: 300;
+    font-size: 14px;
 }
