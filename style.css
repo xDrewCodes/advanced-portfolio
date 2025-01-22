@@ -165,17 +165,33 @@ footer {
 .modal--open nav,
 .modal--open .scroll,
 .modal--open .header,
-.modal--open #projects,
-.modal--open footer {
+.modal--open .project__list,
+.modal--open .footer__row,
+.modal--open .section__title {
     opacity: 0;
     visibility: hidden;
+}
+
+.modal--open.dark-mode .modal {
+    box-shadow: 0 30px 70px -70px rgba(50, 200, 100);
+}
+
+
+.dark-mode .modal__about {
+    background-color: #343434;
+    color: white;
+}
+
+.dark-mode .modal__contact,
+.dark-mode .input {
+    background-color: #141414;
 }
 
 /* DARK MODE CHANGES */
 
 .dark-mode .title,
 .dark-mode .header__paragraph,
-.dark-mode .nav__link--anchor, 
+.dark-mode .nav__link--anchor,
 .dark-mode .section__title {
     color: white;
 }
@@ -193,7 +209,8 @@ footer {
     filter: invert(1);
 }
 
-.dark-mode section {
+.dark-mode section,
+.dark-mode #projects {
     background-color: #242424;
 }
 
@@ -218,6 +235,7 @@ footer {
     width: 100%;
     max-width: 1000px;
     padding: 0 32px;
+    z-index: 1;
 }
 
 .header__paragraph {
@@ -252,10 +270,10 @@ footer {
     border: none;
     border-radius: 50%;
     background-color: var(--theme__color);
-    position: absolute;
+    position: fixed;
     bottom: 32px;
     right: 40px;
-
+    z-index: 3;
 }
 
 .scroll {
@@ -263,6 +281,7 @@ footer {
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 1;
 }
 
 .scroll__icon {
@@ -641,4 +660,68 @@ footer {
     letter-spacing: 1px;
     font-weight: 300;
     font-size: 14px;
+}
+
+
+
+
+/* SHAPES */
+
+.shape__container {
+    position: relative;
+    margin: 0 auto;
+    height: 100vh;
+    width: 100%;
+    max-width: 1000px;
+    z-index: 0;
+}
+
+.shape {
+    height: 15px;
+    width: 15px;
+    position: absolute;
+    animation: shapes 11s linear infinite;
+}
+
+.shape__row-1 {
+    top: 10%;
+}
+
+.shape__row-2 {
+    top: 55%;
+}
+
+.shape__row-3 {
+    top: 80%;
+}
+
+.shape__col-1 {
+    left: 10%;
+}
+
+.shape__col-2 {
+    left: 55%;
+}
+
+.shape__col-3 {
+    left: 85%;
+}
+
+
+.modal--open .shape {
+    position: absolute;
+    top: 73vh;
+    left: 50%;
+    transition: all 0.75s cubic-bezier(.31, .74, 0, .99);
+}
+
+
+@keyframes shapes {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
