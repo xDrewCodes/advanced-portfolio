@@ -71,7 +71,7 @@ function toggleModal() {
         document.getElementsByTagName('body')[0].classList += ' modal--open'
         document.getElementsByClassName('modal')[0].style.zIndex = 3
     } else {
-        document.getElementsByTagName('body')[0].classList -= ' modal--open'
+        document.getElementsByTagName('body')[0].classList.remove('modal--open')
         setTimeout(
             () => {
                 document.getElementsByClassName('modal')[0].style.zIndex = -1
@@ -83,3 +83,22 @@ function toggleModal() {
 
 }
 
+
+
+
+
+// DARK MODE
+
+let darkToggle = false
+
+function darkMode() {
+
+    darkToggle = !darkToggle
+
+    if (darkToggle) {
+        document.body.classList += ' dark-mode'
+    } else {
+        document.body.classList.remove('dark-mode')
+    }
+
+}

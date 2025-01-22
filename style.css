@@ -40,6 +40,7 @@ p {
 
 section {
     background-color: rgb(245 245 245);
+    transition: all 0.2s ease;
 }
 
 .link__hover-effect {
@@ -107,7 +108,7 @@ section {
 }
 
 .green {
-    color: var(--theme__color);
+    color: var(--theme__color) !important;
     font-weight: bold;
 }
 
@@ -133,17 +134,16 @@ textarea {
     border: none;
     border-bottom: 1px solid #f6f6f6;
     height: 40px;
-    transition: all 0.2s ease;
 }
 
 input:hover,
 textarea:hover {
-    border-bottom: 1px solid var(--theme__color);
+    border-bottom: 2px solid var(--theme__color);
 }
 
 input:focus,
 textarea:focus {
-    border-bottom: 1px solid var(--theme__color);
+    border-bottom: 2px solid var(--theme__color);
 }
 
 label {
@@ -160,6 +160,8 @@ footer {
     transition: all 0.4s ease;
 }
 
+/* MODAL FADES */
+
 .modal--open nav,
 .modal--open .scroll,
 .modal--open .header,
@@ -168,6 +170,38 @@ footer {
     opacity: 0;
     visibility: hidden;
 }
+
+/* DARK MODE CHANGES */
+
+.dark-mode .title,
+.dark-mode .header__paragraph,
+.dark-mode .nav__link--anchor, 
+.dark-mode .section__title {
+    color: white;
+}
+
+.dark-mode .scroll__icon {
+    border-color: white;
+}
+
+.dark-mode .scroll__icon:after,
+.dark-mode .link__hover-effect--black:after {
+    background-color: white;
+}
+
+.dark-mode .personal-logo {
+    filter: invert(1);
+}
+
+.dark-mode section {
+    background-color: #242424;
+}
+
+.dark-mode footer {
+    background-color: #141414;
+}
+
+
 
 
 /* LANDING */
@@ -270,11 +304,13 @@ nav {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 16px;
     height: 100px;
+    z-index: 1;
 }
 
 .personal-logo {
-    height: 100px;
+    height: 50px;
 }
 
 .nav__link--list {
@@ -293,6 +329,7 @@ nav {
 
 .fa-adjust {
     font-size: 20px;
+    cursor: pointer
 }
 
 .header__link {
@@ -579,7 +616,8 @@ footer {
 }
 
 .footer__logo--img {
-    width: 90px;
+    height: 60px;
+    filter: invert(1);
 }
 
 .footer__social--link,
