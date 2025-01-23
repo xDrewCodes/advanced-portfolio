@@ -140,6 +140,87 @@ function randShapeRot() {
 randShapeRot()
 
 
+
+
+
+
+
+
+
+
+
+
+let driftTimeout;
+let drifting = false;
+let previousDriftDirections = Array(shapes.length).fill({ x: 0, y: 0 });
+let initialPositions = Array.from(shapes).map(shape => {
+    const currentTranslate = shape.style.translate.split(' ');
+    return {
+        x: parseFloat(currentTranslate[0]) || 0,
+        y: parseFloat(currentTranslate[1]) || 0
+    };
+});
+
+function startDrifting() {
+    drifting = true;
+    driftShapes();
+}
+
+function stopDrifting() {
+    drifting = false;
+}
+
+let increasedBiasFactor = 1;
+let biasFactorTimeout;
+
+function moveShapes(event) {
+    increasedBiasFactor = 1; // Increase the bias factor while the cursor is moving
+
+    clearTimeout(biasFactorTimeout);
+    biasFactorTimeout = setTimeout(() => {
+        increasedBiasFactor = 1; // Reset the bias factor after 100 milliseconds
+    }, 10);
+}
+
+function driftShapes() {
+    if (!drifting) return;
+
+    for (let i = 0; i < shapes.length; i++) {
+        const biasFactor = increasedBiasFactor
+        const directionChangeBiasFactor = 0.1;
+
+        const randomX = (Math.random() - 0.5) * 0.02 + previousDriftDirections[i].x; 
+        const randomY = (Math.random() - 0.5) * 0.03 + previousDriftDirections[i].y; 
+        const currentTranslate = shapes[i].style.translate.split(' ');
+        const currentX = parseFloat(currentTranslate[0]) || 0;
+        const currentY = parseFloat(currentTranslate[1]) || 0;
+
+        // Introduce bias towards changing direction
+        let biasedX = randomX;
+        let biasedY = randomY;
+
+        shapes[i].style.translate = `${currentX + biasedX}px ${currentY + biasedY}px`;
+
+        // Update previous drift direction
+        previousDriftDirections[i] = { x: biasedX, y: biasedY };
+    }
+
+    requestAnimationFrame(driftShapes);
+}
+
+document.addEventListener('mousemove', moveShapes);
+startDrifting(); // Ensure drifting starts
+
+
+
+
+
+
+
+
+
+
+
 /* MOUSE INTERACT */
 
 let scaleFactor = 30
@@ -154,7 +235,7 @@ let shapeLocs = [
     [40, 20]
 ]
 
-function moveShapes(event) {
+/*function moveShapes(event) {
 
     if (!modalOpen) {
         const x = event.clientX / scaleFactor
@@ -192,7 +273,7 @@ function moveShapes(event) {
     }
 
 }
-
+*/
 
 /* SCROLL */
 
