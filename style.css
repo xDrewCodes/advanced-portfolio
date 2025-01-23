@@ -684,6 +684,7 @@ footer {
     width: 15px;
     position: absolute;
     animation: shapes 11s linear infinite;
+    transition: all 0.5s ease;
 }
 
 .shape__row-1 {
