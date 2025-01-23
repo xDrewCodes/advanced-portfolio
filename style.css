@@ -684,7 +684,7 @@ footer {
     width: 15px;
     position: absolute;
     animation: shapes 11s linear infinite;
-    transition: all 0.5s ease;
+    transition: all 0.75s cubic-bezier(.31, .74, 0, .99);
 }
 
 .shape__row-1 {
@@ -716,7 +716,6 @@ footer {
     position: absolute;
     top: 73vh;
     left: 50%;
-    transition: all 0.75s cubic-bezier(.31, .74, 0, .99);
 }
 
 
