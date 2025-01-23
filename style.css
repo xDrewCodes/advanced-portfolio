@@ -1,7 +1,10 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 html {
     --theme__color: #427a5b;
+    --bg__color: #c2d6cb;
 
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -10,7 +13,7 @@ html {
     -ms-user-select: none;
     user-select: none;
 
-    background-color: rgb(245 245 245);
+    background-color: #c2d6cb;
 
     scroll-behavior: smooth;
 }
@@ -39,7 +42,7 @@ p {
 }
 
 section {
-    background-color: rgb(245 245 245);
+    background-color: var( --bg__color );
     transition: all 0.2s ease;
 }
 
@@ -626,6 +629,7 @@ footer {
     background-color: #242424;
     display: flex;
     padding: 4% 0;
+    color: var( --bg__color );
 }
 
 .footer__row {
@@ -636,12 +640,11 @@ footer {
 
 .footer__logo--img {
     height: 60px;
-    filter: invert(1);
 }
 
 .footer__social--link,
 .footer__copyright {
-    color: white;
+    color: var( --bg__color );
 }
 
 .footer__social--list {
@@ -724,4 +727,121 @@ footer {
     100% {
         transform: rotate(360deg);
     }
+}
+
+
+
+/* Phones and tablets */
+@media ( max-width: 768px ) {
+
+    .title {
+        font-size: 80px;
+    }
+
+    .header__paragraph {
+        font-size: 18px;
+        max-width: 400px;
+    }
+
+    .modal {
+        top: 0;
+        left: 0;
+        transform: none;
+        height: 100%;
+        width: 100%;
+        flex-direction: column;
+        border-radius: 0;
+    }
+
+    .modal__half {
+        width: 100%;
+        height: 50%;
+    }
+
+    .mail__button {
+        z-index: 2;
+    }
+
+    .modal__close {
+        font-size: 40px;
+        color: #242424;
+    }
+
+    .dark-mode .modal__close {
+        color: white;
+    }
+
+    .project {
+        margin-left: 32px;
+        margin-right: 32px;
+    }
+
+    .project {
+        margin-bottom: 80px;
+    }
+
+}
+
+
+/* Small phones */
+
+@media ( max-width: 480px ) {
+
+    .title {
+        font-size: 60px;
+    }
+
+    .header__paragraph {
+        font-size: 16px;
+    }
+
+    .nav__link:first-child {
+        display: none;
+    }
+
+    .scroll {
+        display: none;
+    }
+
+    .project__wrapper {
+        text-align: center;
+    }
+
+    .project__description--paragraph {
+        display: none;
+    }
+
+    .project__description--title,
+    .project__description--sub-title {
+        text-align: center;
+    }
+
+    .project__description--links {
+        margin-top: 10px;
+    }
+
+    .project__description {
+        left: 0;
+        padding: 0;
+        width: 100%;
+    }
+
+    .project {
+        margin-bottom: 50px;
+    }
+
+    .modal__half {
+        text-align: center;
+    }
+
+    .form__item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    input, textarea {
+        width: 70%;
+    }
+
 }
