@@ -72,9 +72,11 @@ function toggleModal() {
         document.getElementsByTagName('body')[0].classList += ' modal--open'
         document.getElementsByClassName('modal')[0].style.zIndex = 3
         disableScroll()
+        stopDrifting()
     } else {
         document.getElementsByTagName('body')[0].classList.remove('modal--open')
         enableScroll()
+        startDrifting()
         setTimeout(
             () => {
                 document.getElementsByClassName('modal')[0].style.zIndex = -1
@@ -111,15 +113,15 @@ darkMode()
 /* RANDOMIZE SHAPE ROTATIONS */
 
 let shapes = document.getElementsByClassName('shape')
-let shapeSpeedRange = [4, 25]
+let shapeSpeedRange = [9, 20]
 let randDirection = true
 
 function range(start, end) {
-    var ans = [];
+    var ans = []
     for (let i = start; i <= end; i++) {
-        ans.push(i);
+        ans.push(i)
     }
-    return ans;
+    return ans
 }
 
 shapeSpeedRange = range(shapeSpeedRange[0], shapeSpeedRange[1])
@@ -150,66 +152,76 @@ randShapeRot()
 
 
 
-let driftTimeout;
-let drifting = false;
-let previousDriftDirections = Array(shapes.length).fill({ x: 0, y: 0 });
+let driftTimeout
+let drifting = false
+let previousDriftDirections = Array(shapes.length).fill({ x: 0, y: 0 })
 let initialPositions = Array.from(shapes).map(shape => {
-    const currentTranslate = shape.style.translate.split(' ');
+    const currentTranslate = shape.style.translate.split(' ')
     return {
         x: parseFloat(currentTranslate[0]) || 0,
         y: parseFloat(currentTranslate[1]) || 0
-    };
-});
+    }
+})
 
 function startDrifting() {
-    drifting = true;
-    driftShapes();
+    drifting = true
+    driftShapes()
 }
 
 function stopDrifting() {
-    drifting = false;
+    drifting = false
 }
 
-let increasedBiasFactor = 1;
-let biasFactorTimeout;
+let increasedBiasFactor = 1
+let biasFactorTimeout
 
-function moveShapes(event) {
-    increasedBiasFactor = 1; // Increase the bias factor while the cursor is moving
 
-    clearTimeout(biasFactorTimeout);
-    biasFactorTimeout = setTimeout(() => {
-        increasedBiasFactor = 1; // Reset the bias factor after 100 milliseconds
-    }, 10);
-}
 
 function driftShapes() {
-    if (!drifting) return;
+    if (!drifting) return
+
+    const screenWidth = window.innerWidth
+    const screenHeight = window.innerHeight
 
     for (let i = 0; i < shapes.length; i++) {
         const biasFactor = increasedBiasFactor
-        const directionChangeBiasFactor = 0.1;
+        let directionChangeBiasFactor = 2
 
-        const randomX = (Math.random() - 0.5) * 0.02 + previousDriftDirections[i].x; 
-        const randomY = (Math.random() - 0.5) * 0.03 + previousDriftDirections[i].y; 
-        const currentTranslate = shapes[i].style.translate.split(' ');
-        const currentX = parseFloat(currentTranslate[0]) || 0;
-        const currentY = parseFloat(currentTranslate[1]) || 0;
+        const randomX = (Math.random() - 0.5) * 0.1 + previousDriftDirections[i].x
+        const randomY = (Math.random() - 0.5) * 0.1 + previousDriftDirections[i].y
+        const currentTranslate = shapes[i].style.translate.split(' ')
+        const currentX = parseFloat(currentTranslate[0]) || 0
+        const currentY = parseFloat(currentTranslate[1]) || 0
 
-        // Introduce bias towards changing direction
-        let biasedX = randomX;
-        let biasedY = randomY;
+        let biasedX = randomX
+        let biasedY = randomY
 
-        shapes[i].style.translate = `${currentX + biasedX}px ${currentY + biasedY}px`;
 
-        // Update previous drift direction
-        previousDriftDirections[i] = { x: biasedX, y: biasedY };
+        let shapeTransl = shapes[i].style.translate.split('px').toString()
+
+        let distTop = shapeTransl.split(',')[1]
+        let distLeft = shapeTransl.split(',')[0]
+
+        distTop = shapes[i].offsetTop + parseInt(distTop)
+        distLeft = shapes[i].offsetLeft + parseInt(distLeft)
+
+        if (distLeft < 0 || distLeft > screenWidth - shapes[i].offsetWidth) {
+            biasedX = -biasedX
+        }
+        if (distTop < 0 || distTop > screenHeight - shapes[i].offsetHeight) {
+            biasedY = -biasedY
+        }
+
+        shapes[i].style.translate = `${currentX + biasedX}px ${currentY + biasedY}px`
+
+        previousDriftDirections[i] = { x: biasedX, y: biasedY }
     }
 
-    requestAnimationFrame(driftShapes);
+    requestAnimationFrame(driftShapes)
 }
 
-document.addEventListener('mousemove', moveShapes);
-startDrifting(); // Ensure drifting starts
+document.addEventListener('mousemove', moveShapes)
+startDrifting()
 
 
 
@@ -235,45 +247,25 @@ let shapeLocs = [
     [40, 20]
 ]
 
-/*function moveShapes(event) {
+function moveShapes(event) {
 
-    if (!modalOpen) {
-        const x = event.clientX / scaleFactor
-        const y = event.clientY / scaleFactor
+    if (modalOpen) return
 
-        for (let i = 0; i < shapes.length; i++) {
+    increasedBiasFactor = 0.01
 
-            let chance = i % 4
+    clearTimeout(biasFactorTimeout)
+    biasFactorTimeout = setTimeout(() => {
+        increasedBiasFactor = 1
+    }, 100)
 
-            if (chance == 0) {
-                shapes[i].style.translate = `${x}px ${y}px`
-            } else if (chance == 1) {
-                shapes[i].style.translate = `-${x}px ${y}px`
-            } else if (chance == 2) {
-                shapes[i].style.translate = `${x}px -${y}px`
-            } else {
-                shapes[i].style.translate = `-${x}px -${y}px`
-            }
 
-        }
-    } else if (true) {
+    if (modalOpen) {
 
-        var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+        console.log('modal open')
 
-        if (window.innerHeight / 2 > scrollTop) {
-            for (let i = 0; i < shapes.length; i++) {
-                let top = shapeLocs[i][1] + scrollTop
-                shapes[i].style.translate = shapeLocs[i][0] + 'px ' + top + 'px'
-            }
-        } else {
-            for (let i = 0; i < shapes.length; i++) {
-                shapes[i].style.translate = '0 -90000vh'
-            }
-        }
     }
 
 }
-*/
 
 /* SCROLL */
 

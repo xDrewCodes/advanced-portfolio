@@ -613,7 +613,6 @@ nav {
     margin-right: 8px;
     font-size: 22px;
 }
-
 .project__description--title,
 .project__description--sub-title,
 .project__description--paragraph,
@@ -682,7 +681,7 @@ footer {
 .shape {
     height: 15px;
     width: 15px;
-    position: absolute;
+    position: fixed;
     animation: shapes 11s linear infinite;
     transition: all 0.75s cubic-bezier(.31, .74, 0, .99);
 }
@@ -713,8 +712,7 @@ footer {
 
 
 .modal--open .shape {
-    position: absolute;
-    top: 73vh;
+    top: 90vh;
     left: 50%;
 }
 
