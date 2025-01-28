@@ -235,7 +235,8 @@ startDrifting()
 
 /* MOUSE INTERACT */
 
-let scaleFactor = 30
+let scaleFactor = 100
+let shapeSpread = 10
 let shapeLocs = [
     [10, 40],
     [25, 4],
@@ -249,20 +250,32 @@ let shapeLocs = [
 
 function moveShapes(event) {
 
-    if (modalOpen) return
-
-    increasedBiasFactor = 0.01
-
-    clearTimeout(biasFactorTimeout)
-    biasFactorTimeout = setTimeout(() => {
-        increasedBiasFactor = 1
-    }, 100)
-
-
     if (modalOpen) {
 
-        console.log('modal open')
+        for (let i = 0; i < shapes.length; i++) {
 
+            let shape = shapes[i]
+            let shapeLoc = shapeLocs[i]
+
+            let x = event.clientX - window.innerWidth / 2
+            let y = event.clientY - window.innerHeight / 2
+
+            let xMove = x*2 / scaleFactor
+            let yMove = y*2 / scaleFactor
+
+            shape.style.translate = `${shapeLoc[0] + xMove }px ${shapeLoc[1] + yMove}px`
+
+        }
+
+    } else {
+
+        
+        increasedBiasFactor = 0.01
+        
+        clearTimeout(biasFactorTimeout)
+        biasFactorTimeout = setTimeout(() => {
+            increasedBiasFactor = 1
+        }, 100)
     }
 
 }

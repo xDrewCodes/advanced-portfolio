@@ -713,7 +713,8 @@ footer {
 
 .modal--open .shape {
     top: 90vh;
-    left: 50%;
+    left: calc( 50% - 7.5px );
+    transition: none;
 }
 
 
