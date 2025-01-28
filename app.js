@@ -73,8 +73,20 @@ function toggleModal() {
         document.getElementsByClassName('modal')[0].style.zIndex = 3
         disableScroll()
         stopDrifting()
+        setTimeout(
+            () => {
+                for ( let i = 0; i < shapes.length; i++ ) { 
+                    document.getElementsByClassName('shape')[i].style.transition = 'none'
+                 }
+            }, 750
+        )
+
     } else {
         document.getElementsByTagName('body')[0].classList.remove('modal--open')
+        
+        for ( let i = 0; i < shapes.length; i++ ) {
+            document.getElementsByClassName('shape')[i].style.transition = 'all 0.6s cubic-bezier(.31, .74, 0, .99)'
+        }
         enableScroll()
         startDrifting()
         setTimeout(
@@ -83,7 +95,6 @@ function toggleModal() {
             }, 100
         )
     }
-
     modalOpen = !modalOpen
 
 }

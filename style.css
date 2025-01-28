@@ -683,7 +683,7 @@ footer {
     width: 15px;
     position: fixed;
     animation: shapes 11s linear infinite;
-    transition: all 0.75s cubic-bezier(.31, .74, 0, .99);
+    transition: all 0.6s cubic-bezier(.31, .74, 0, .99);
 }
 
 .shape__row-1 {
@@ -714,7 +714,6 @@ footer {
 .modal--open .shape {
     top: 90vh;
     left: calc( 50% - 7.5px );
-    transition: none;
 }
 
 
